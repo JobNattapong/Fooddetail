@@ -40,7 +40,7 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.find_element_by_id("id_sub").click()
         time.sleep(1)
         # เขาจะเห็นว่ารายละเอียดที่กรอกเข้าไปจะไปอยู่ใน list แต่จะขึ้นแค่ชื่ออาหาร
-        self.check_for_row_in_list_table('1: กระเพาไก่ 24 5 Delete')
+        self.check_for_row_in_list_table('กระเพาไก่ 24 5')
 
         nameFoof = self.browser.find_element_by_id('name_food')
         nameFoof.send_keys('ราดหน้า')
@@ -58,10 +58,14 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.find_element_by_id("id_sub").click()
         time.sleep(1)
 
-        self.check_for_row_in_list_table('1: กระเพาไก่ 24 5 Delete')
-        self.check_for_row_in_list_table('2: ราดหน้า 6 30 Delete')
+        self.check_for_row_in_list_table('กระเพาไก่ 24 5')
+        self.check_for_row_in_list_table('ราดหน้า 6 30')
         # และเขาสามารถลบข้อมูลที่เพิ่มเข้าไปได้เช่นลบ กระเพาไก่
-        self.browser.find_element_by_id('1').click()
+        delete = self.browser.find_element_by_id('del_input')
+        delete.send_keys(1)
+        time.sleep(1)
+
+        self.browser.find_element_by_id("del").click()
         time.sleep(1)
         # เช็คว่า data1 หายจริงๆ
         table = self.browser.find_element_by_id('id_list_table')

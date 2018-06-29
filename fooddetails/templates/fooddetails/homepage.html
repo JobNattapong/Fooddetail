@@ -1,0 +1,38 @@
+<html>
+  <title>Food Detail</title>
+  <body>
+    <style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    </style>
+    <h1>Food Detail</h1>
+
+    <form method="POST" action="/addFooddetail">
+    <br>
+    Name <input name="nameFood" id="name_food" placeholder="Add Name Food" />
+    <br>
+    Sugar <input name="sizeProtein" id="size_protein" placeholder="Add Protein" />%
+    <br>
+    Protein <input name="sizeSugar" id="size_sugar" placeholder="Add Sugar" />%
+    <br><br>
+    <input id="id_sub" type="submit" value="Submit">
+    {% csrf_token %}
+    </form>
+    <table id="id_list_table" style="width:40%">
+      {% for food in foods %}
+       <tr>
+         <td>{{ food.food_text }}</td>
+         <td>{{food.sugar}} %</td>
+         <td>{{food.protein}} %</td>
+       </tr>
+      {% endfor %}
+    </table><br><br>
+    <form method="POST" action="/deleteFood">
+    Delete <input name="del_id" id="del_input" placeholder="Put number row at delete" /><br>
+    <button type="submit" name="delete" id="del" value={{food.id}}>Delete</button>
+    {% csrf_token %}
+    </form>
+  </body>
+</html>
