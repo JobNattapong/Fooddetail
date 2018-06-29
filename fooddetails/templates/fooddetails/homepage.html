@@ -8,14 +8,15 @@
     }
     </style>
     <h1>Food Detail</h1>
+    <h4>{{error_message}}</h4>
 
     <form method="POST" action="/addFooddetail">
     <br>
     Name <input name="nameFood" id="name_food" placeholder="Add Name Food" />
     <br>
-    Sugar <input name="sizeProtein" id="size_protein" placeholder="Add Protein" />%
+    Sugar <input name="sizeProtein" id="size_sugar" placeholder="Add Protein" />%
     <br>
-    Protein <input name="sizeSugar" id="size_sugar" placeholder="Add Sugar" />%
+    Protein <input name="sizeSugar" id="size_protein" placeholder="Add Sugar" />%
     <br><br>
     <input id="id_sub" type="submit" value="Submit">
     {% csrf_token %}
