@@ -7,16 +7,16 @@
         border-collapse: collapse;
     }
     </style>
-    <h1>Food Detail</h1>
+    <h1>Add Food Detail</h1>
     <h4>{{error_message}}</h4>
 
     <form method="POST" action="/addFooddetail">
     <br>
     Name <input name="nameFood" id="name_food" placeholder="Add Name Food" />
     <br>
-    Sugar <input name="sizeProtein" id="size_sugar" placeholder="Add Protein" />%
+    Sugar <input name="sizeSugar" id="size_sugar" placeholder="Add Sugar" />%
     <br>
-    Protein <input name="sizeSugar" id="size_protein" placeholder="Add Sugar" />%
+    Protein <input name="sizeProtein" id="size_protein" placeholder="Add Protein" />%
     <br><br>
     <input id="id_sub" type="submit" value="Submit">
     {% csrf_token %}
@@ -30,9 +30,26 @@
        </tr>
       {% endfor %}
     </table><br><br>
+    <h3>Delete Food</h3>
+    <h4>{{delete_error}}</h4>
     <form method="POST" action="/deleteFood">
-    Delete <input name="del_id" id="del_input" placeholder="Put number row at delete" /><br>
-    <button type="submit" name="delete" id="del" value={{food.id}}>Delete</button>
+    Delete <input name="food_del" placeholder="Enter name food" /><br>
+          <input id="id_sub" type="submit" value="Delete">
+    {% csrf_token %}
+    </form>
+    <h3>Edit Food</h3>
+    <h4>{{edit_error}}</h4>
+    <form method="POST" action="/editFooddetail">
+    <br>
+      Old  Food <input name="old_name_food" />
+    <br>
+      New Food <input name="new_name_food" />
+    <br>
+      New Sugar <input name="new_name_sugar" />
+    <br>
+      New Protein <input name="new_name_protein" />
+    <br><br>
+    <input id="id_sub" type="submit" value="Submit">
     {% csrf_token %}
     </form>
   </body>

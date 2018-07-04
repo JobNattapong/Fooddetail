@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.http import HttpResponse
 from fooddetails.models import Food
 
@@ -16,12 +16,38 @@ def add_food(request):
     protein_ = request.POST['sizeProtein']
     if (food_ != '' and sugar_ != '' and protein_ != ''):
         Food.objects.create(food_text = food_ ,sugar = sugar_ ,protein = protein_)
-        return redirect('/')
+        return render(request, 'fooddetails/homepage.html', {'foods' : data_food, 'error_message' : error_message})
     else:
-        error_message = "please enter fully"
+        error_message = "please enter completely"
         return render(request, 'fooddetails/homepage.html', {'foods' : data_food, 'error_message' : error_message})
 
 def delete_row_table(request):
-    del_id = int(request.POST['del_id'])
-    Food.objects.get(id=del_id).delete()
-    return redirect('/')
+    delete_error = ''
+    data_food = Food.objects.all()
+    delete_food = request.POST['food_del']
+    if (delete_food != ''):
+        food = Food.objects.filter(food_text=delete_food)
+        food.delete()
+        return render(request, 'fooddetails/homepage.html', {'foods' : data_food, 'delete_error' : delete_error})
+    else:
+        delete_error = "Incomplete!!!!!"
+        return render(request, 'fooddetails/homepage.html', {'foods' : data_food, 'delete_error' : delete_error})
+
+def edit_food(request):
+    edit_error = ''
+    data_food = Food.objects.all()
+    Oldfood = request.POST['old_name_food']
+    Newfood = request.POST['new_name_food']
+    Newsugar = request.POST['new_name_sugar']
+    Newprotein = request.POST['new_name_protein']
+
+    if (Oldfood != '' and Newfood != '' and Newsugar != '' and Newprotein != ''):
+        fooddetail = Food.objects.get(food_text=Oldfood)
+        fooddetail.food_text = Newfood
+        fooddetail.sugar = Newsugar
+        fooddetail.protein = Newprotein
+        fooddetail.save()
+        return render(request, 'fooddetails/homepage.html', {'foods' : data_food, 'edit_error' : edit_error})
+    else:
+        edit_error = "Incomplete!!!!!"
+        return render(request, 'fooddetails/homepage.html', {'foods' : data_food, 'edit_error' : edit_error})
