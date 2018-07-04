@@ -12,8 +12,8 @@ def add_food(request):
     error_message = ""
     data_food = Food.objects.all()
     food_ = str(request.POST['nameFood'])
-    sugar_ = request.POST['sizeSugar']
-    protein_ = request.POST['sizeProtein']
+    sugar_ = request.POST['volumeSugar']
+    protein_ = request.POST['volumeProtein']
     if (food_ != '' and sugar_ != '' and protein_ != ''):
         Food.objects.create(food_text = food_ ,sugar = sugar_ ,protein = protein_)
         return render(request, 'fooddetails/homepage.html', {'foods' : data_food, 'error_message' : error_message})

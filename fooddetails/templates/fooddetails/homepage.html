@@ -14,9 +14,9 @@
     <br>
     Name <input name="nameFood" id="name_food" placeholder="Add Name Food" />
     <br>
-    Sugar <input name="sizeSugar" id="size_sugar" placeholder="Add Sugar" />%
+    Sugar <input name="volumeSugar" id="volume_sugar" placeholder="Add Sugar" />%
     <br>
-    Protein <input name="sizeProtein" id="size_protein" placeholder="Add Protein" />%
+    Protein <input name="volumeProtein" id="volume_protein" placeholder="Add Protein" />%
     <br><br>
     <input id="id_sub" type="submit" value="Submit">
     {% csrf_token %}
@@ -33,23 +33,23 @@
     <h3>Delete Food</h3>
     <h4>{{delete_error}}</h4>
     <form method="POST" action="/deleteFood">
-    Delete <input name="food_del" placeholder="Enter name food" /><br>
-          <input id="id_sub" type="submit" value="Delete">
+    Delete <input id="del_input" name="food_del" placeholder="Enter name food" /><br>
+          <input id="id_del" type="submit" value="Delete">
     {% csrf_token %}
     </form>
     <h3>Edit Food</h3>
     <h4>{{edit_error}}</h4>
     <form method="POST" action="/editFooddetail">
     <br>
-      Old  Food <input name="old_name_food" />
+      Old  Food <input name="old_name_food" id="old_food"/>
     <br>
-      New Food <input name="new_name_food" />
+      New Food <input name="new_name_food" id="new_food"/>
     <br>
-      New Sugar <input name="new_name_sugar" />
+      New Sugar <input name="new_name_sugar" id="new_sugar"/>
     <br>
-      New Protein <input name="new_name_protein" />
+      New Protein <input name="new_name_protein" id="new_protein"/>
     <br><br>
-    <input id="id_sub" type="submit" value="Submit">
+    <input id="id_edit" type="submit" value="Submit">
     {% csrf_token %}
     </form>
   </body>
